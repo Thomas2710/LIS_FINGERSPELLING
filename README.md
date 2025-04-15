@@ -57,4 +57,27 @@ imgs_folder contains images used in the tutorials, feel free to add some more.
 - __1.CLIP__ contains a program that shows how most AI's nowadays work: by learning an embedding space. Play a bit with the images and text in the code to see what the AI considers to be similar :thumbsup:
 - __clip_imgs__ contains the images used for the clip notebook
 
+## 📂 Downloading the Dataset from Kaggle
+The followin notebooks require a dataset hosted on [Kaggle](https://www.kaggle.com). In particular, the dataset is [LIS_FINGERSPELLING](https://www.kaggle.com/datasets/nicholasnisopoli/lisdataset).
+The dataset must be downloaded and placed under __archive/LIS-fingerspelling-dataset__ as structured in this repo.
+
+__It is important that the folder structure is the same as  in this repo__
+
+- __2.0.train_recognition__ contains a recognition algorithm based on a CNN. Should be the same exercise as in __3.mnist__ but with a bit of additional work to do on the dataset creation. The model takes a while to create, and it saves its weights under __checkpoints/cnn/__
+- __2.1.real_time_inference_cnn__ contains a real time inference using the computer internal camera. It loads the model trained in the previous notebook to perform real time recognition. It is normal to see that the performances obtained in the test set are very different from the real_time prediction
+- __2.2.train_recognition_SOL__ contains the solution to 2.0.train_recognition
+
+
+- __3.generate_landmark_dataset__ is a notebook that generates the data for the next notebooks. It start generating it from __archive/LIS-fingerspelling-dataset__, so it is important that the original dataset is not corrupted
+
+- __4.0.train_landmark_recognition__ contains a recognition algorithm based on Google's mediapipe library. This library uses the positions of the hand salient points (landmarks) instead of the full image to recognize hand gestures. The notebook saves its weights under __checkpoints/landmark/__
+
+- __4.1.real_time_inference_landmark__ contains a real time inference using the computer internal camera. It loads the model trained in the previous notebook to perform real time recognition. The performances are better than with the cnn model. Simmetry of hands is still not implemented so try to gesture with both hands
+
+- __5.data_collection__ Finally, in this last notebook we can create our own dataset of gestures. Running the notebook will ask for which symbol you want to collect data for. Symbols are customizable in the notebook by changing the class_map dictionary. After that, camera will start recording and whenever a key is pressed, will collect a picture and save it under the right folder under __data/__.
+
+When q is pressed, you get the possibility to change symbol. When s is pressed, the notebook stops.
+__In order to succesfully press a key, you must have the focus on the camera window, not the code!!__
+
+By iterating 5.data_collection -> 3.generate_landmark_dataset -> 4.0.train_landmark_recognition -> 4.1.real_time_inference_landmark and adjusting the data folder paths, it is possible to train a recongnition algorithm for your own images and symbols, have fun!
 
