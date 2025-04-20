@@ -7,6 +7,14 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+mediapipe = "0.10.21"
+pandas = "2.2.3"
+pillow = "11.2.1"
+requests = "2.32.3"
+scikit-learn = "1.6.1"
+torch = "2.6.0"
+torchvision = "0.21.0"
+tqdm = "4.67.1"
 
 
 [build-system]
